@@ -1,0 +1,40 @@
+<h1>ACCUEIL ADMINISTRATEUR</h1>
+
+<div class="container">
+        <div class="card-deck">
+                <!-- Card -->
+                <mdb-card *ngFor="let artist of myArtists">
+                  <div class="view overlay waves-light" mdbWavesEffect>
+                    <!-- Card img -->
+                    <mdb-card-img src="./assets/davut.gif" alt="Card image cap"></mdb-card-img>
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                  <!--Card content-->
+                  <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                      <h4> {{artist.nom}}</h4>
+                    </mdb-card-title>
+              
+                    <!--Text-->
+                    <mdb-card-text> {{artist.description}}
+                    </mdb-card-text>
+              
+                    <a mdbBtn color="primary" (click)="putArtist()" mdbWavesEffect>Modifier</a>
+                    <a mdbBtn color="primary" (click)="deleteArtist(artist.id)" mdbWavesEffect>Supprimer</a>
+                  </mdb-card-body>
+                </mdb-card>
+              
+                <a mdbBtn color="primary" [routerLink]="['/formArtiste']" mdbWavesEffect>Ajouter</a>
+              
+</div>
+
+<!-- <form [formGroup]="artisteForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <input formControlName="name">
+</form> -->
+
+<!-- <div *ngFor="let artist of myArtists">
+    {{artist.name}}{{artist.description}}{{artist.age}}
+</div> -->

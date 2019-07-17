@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Entrez les coordonnées du nouvel artiste</h1>
+    <!-- Material background input -->
+    <div class="md-form md-bg" >
+        <input [(ngModel)]="nom"type="text" id="formBg1" class="form-control" mdbInput>
+        <label for="formBg1">Nom ou surnom de l'artiste </label>
+    </div>
+    <div class="md-form md-bg">
+        <input [(ngModel)]="age"type="text" id="formBg1" class="form-control" mdbInput>
+        <label for="formBg1">Age de l'artiste</label>
+    </div>
+    <div class="md-form md-bg">
+            <input [(ngModel)]="description"type="text" id="formBg1" class="form-control" mdbInput>
+            <label for="formBg1">Description artistique</label>
+            <a mdbBtn color="primary" (click)="addArtist()" mdbWavesEffect>Valider</a>
+        </div>
+        
+</div>
