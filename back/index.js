@@ -3,6 +3,8 @@ const app = express();
 const port = 8000;
 const connection = require('./config');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+app.use(cors()); // Authorisation d'accès au serveur
 
 // Support JSON-encoded bodies
 app.use(bodyParser.json());
@@ -11,19 +13,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// écoute de l'url "/billets"
-app.post('/billets/name', (req, res) => {
+// écoute de l'url "/artistes"
+app.post('/artiste/', (req, res) => {
 
   const formData = req.body;
 
-  // connection à la base de données, et sélection des billets
-  connection.query('INSERT INTO billets SET ?', formData, (err, results) => {
+  // connection à la base de données, et sélection des artistes
+  connection.query('INSERT INTO artiste SET ?', formData, (err, results) => {
 
 
     if (err) {
-
+      console.log(err)
       // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-      res.status(500).send('Erreur lors de la récupération des billets');
+      res.status(500).send('Erreur lors de la récupération des artiste');
     } else {
 
       // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
@@ -32,13 +34,13 @@ app.post('/billets/name', (req, res) => {
   });
 });
 // écoute de l'url "/spectacle"
-app.get('/spectacle', (req, res) => {
+app.get('/artiste', (req, res) => {
 
   // connection à la base de données, et sélection des spectacles
-  connection.query('SELECT * FROM spectacle', (err, results) => {
+  connection.query('SELECT * FROM artiste', (err, results) => {
 
     if (err) {
-
+      console.log(err)
       // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
       res.status(500).send('Erreur lors de la récupération des spectacles');
     } else {
@@ -49,18 +51,18 @@ app.get('/spectacle', (req, res) => {
   });
 });
 
-app.delete('/billets/:id', (req, res) => {
+app.delete('/artiste/:id', (req, res) => {
 
   // récupération des données envoyées
-  const idbillets = req.params.id;
+  const idArtiste = req.params.id;
 
-  // connexion à la base de données, et suppression du billet
-  connection.query('DELETE FROM billets WHERE id = ?', [idbillets], err => {
+  // connexion à la base de données, et suppression de l'artiste
+  connection.query('DELETE FROM artiste WHERE id = ?', [idArtiste], (err, result) => {
 
     if (err) {
       // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
       console.log(err);
-      res.status(500).send("Erreur lors de la suppression d'un billet");
+      res.status(500).send("Erreur lors de la suppression d'un artiste");
     } else {
 
       // Si tout s'est bien passé, on envoie un statut "ok".
@@ -79,7 +81,7 @@ app.put('/artiste/:id', (req, res) => {
 
 
     if (err) {
-
+      console.log(err)
       // Si une erreur est survenue, alors on informe l'utilisateur de l'artiste
       res.status(500).send('Erreur lors de la récupération des artistes');
     } else {
