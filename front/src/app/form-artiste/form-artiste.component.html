@@ -1,18 +1,46 @@
-<div class="container">
-    <h1>Entrez les coordonnées du nouvel artiste</h1>
-    <!-- Material background input -->
-    <div class="md-form md-bg" >
-        <input [(ngModel)]="nom"type="text" id="formBg1" class="form-control" mdbInput>
-        <label for="formBg1">Nom ou surnom de l'artiste </label>
-    </div>
-    <div class="md-form md-bg">
-        <input [(ngModel)]="age"type="text" id="formBg1" class="form-control" mdbInput>
-        <label for="formBg1">Age de l'artiste</label>
-    </div>
-    <div class="md-form md-bg">
-            <input [(ngModel)]="description"type="text" id="formBg1" class="form-control" mdbInput>
-            <label for="formBg1">Description artistique</label>
-            <a mdbBtn color="primary" (click)="addArtist()" mdbWavesEffect>Valider</a>
+<form [formGroup]="loginForm" class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nom</label>
+            <input
+              type="text"
+              formControlName="nom"
+              class="form-control"
+              id="inputEmail4"
+              placeholder="nom"
+              required
+            />
+            
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">age</label>
+            <input
+              type="number"
+              formControlName="age"
+              class="form-control"
+              id="inputPassword4"
+              placeholder="age"
+            />
+            
+          </div>
         </div>
         
-</div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputAddress2">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress2"
+            formControlName="description"
+            placeholder="description"
+          />
+    
+        </div>
+        
+      </div>
+      
+        <button type="submit" (click)="onPost()" class="btn btn-primary">
+          Send
+        </button>
+      </form>

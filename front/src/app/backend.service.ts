@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { ArtistData } from './models/artisteData.model';
 
 
 @Injectable({
@@ -9,7 +10,8 @@ import { Subject } from 'rxjs';
 })
 export class BackendService {
 
-  artisteSubject = new Subject<any[]>();
+  
+
 
   uri: string = 'http://localhost:8000'
 
@@ -19,7 +21,7 @@ export class BackendService {
 
 
   addArtist(artisteData) {
-    return this.httpClient.post(`${this.uri}/artiste/`, artisteData);
+    return this.httpClient.post<ArtistData[]>(`${this.uri}/artiste/`, artisteData);
 
   }
   deleteArtist(id:number) {
